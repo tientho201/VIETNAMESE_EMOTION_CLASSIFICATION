@@ -1,6 +1,17 @@
 # Trợ Lý Phân Loại Cảm Xúc Tiếng Việt
 
-Dự án xây dựng hệ thống phân loại cảm xúc cho văn bản tiếng Việt sử dụng mô hình Transformer và giao diện web với Streamlit.
+Xây dựng một ứng dụng web đơn giản bằng Streamlit để phân loại cảm xúc (Tích cực, Tiêu cực, Trung tính) từ văn bản tiếng Việt do người dùng nhập vào.
+
+![Ảnh chụp màn hình ứng dụng](image.png)
+
+## Tính năng chính
+
+* Giao diện web tương tác, đơn giản được xây dựng bằng **Streamlit**.
+* Phân loại cảm xúc thành 3 nhãn: **POSITIVE, NEGATIVE, NEUTRAL**.
+* Sử dụng mô hình Transformer (PhoBERT) đã được fine-tune từ **Hugging Face**.
+* Lưu trữ lịch sử phân loại (văn bản, nhãn cảm xúc, thời gian) vào CSDL **SQLite**.
+* Hiển thị 50 kết quả phân loại gần nhất ra giao diện nếu như nhiều hơn thì bấm tải thêm.
+* Xử lý và thông báo lỗi cho đầu vào không hợp lệ (ví dụ: câu dưới 5 ký tự).
 
 ## Cấu trúc dự án
 
@@ -13,7 +24,18 @@ Vietnamese_Emotion_Classification/
 └── README.md                
 ```
 
+## 🛠️ Công nghệ sử dụng
+
+* Python
+* Streamlit (Giao diện web)
+* Transformers (Hugging Face)
+* Pandas (Hiển thị lịch sử)
+* SQLite3 (Cơ sở dữ liệu)
+
 ## Cài đặt
+
+1.  Clone repository (hoặc tải mã nguồn về).
+2.  Cài đặt các thư viện cần thiết:
 
 ```bash
 pip install -r requirements.txt
@@ -27,7 +49,7 @@ streamlit run app.py
 
 ## Tác giả
 
-NGUYỄN TIẾN THỌ
+* **NGUYỄN TIẾN THỌ**
 
 ## Đóng góp
 
