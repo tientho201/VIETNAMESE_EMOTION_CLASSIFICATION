@@ -3,7 +3,10 @@
 
 Xây dựng một ứng dụng web đơn giản bằng Streamlit để phân loại cảm xúc (Tích cực, Tiêu cực, Trung tính) từ văn bản tiếng Việt do người dùng nhập vào.
 
+
+
 ![Ảnh chụp màn hình ứng dụng](image.png)
+
 
 ## 🚀 Tính năng chính
 

@@ -16,14 +16,14 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             text TEXT NOT NULL,
             sentiment TEXT NOT NULL,
-            score REAL NOT NULL,
+            
             timestamp TEXT NOT NULL
         )
     ''')
     conn.commit()
     conn.close()
 
-def add_message(text, sentiment , score):
+def add_message(text, sentiment ):
     """
     Thêm tin nhắn vào database
     """
@@ -33,8 +33,8 @@ def add_message(text, sentiment , score):
     timestamp = datetime.now().isoformat()
     try:
         c.execute('''
-            INSERT INTO history (text, sentiment, score, timestamp) VALUES (?, ?, ?, ?)
-        ''', (text, sentiment, score, timestamp))
+            INSERT INTO history (text, sentiment, timestamp) VALUES (?, ?, ?)
+        ''', (text, sentiment, timestamp))
         conn.commit()
     except sqlite3.Error as e:
         print(f"Lỗi khi thêm tin nhắn vào database: {e}")
@@ -49,7 +49,7 @@ def get_history(limit = 50):
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
     c.execute(f'''
-        SELECT text, sentiment, score, timestamp FROM history ORDER BY timestamp DESC LIMIT {limit}
+        SELECT text, sentiment, timestamp FROM history ORDER BY timestamp DESC LIMIT {limit}
     ''')
     history = c.fetchall()
     conn.close()

@@ -43,6 +43,7 @@ def main():
                     raw_result = result[0]
                     label = raw_result["label"].upper()
                     score = raw_result["score"]
+             
                     if score < 0.5:
                         sentiment = "NEUTRAL"
                     else: 
@@ -60,7 +61,7 @@ def main():
                         st.info(f"Trung tính (NEUTRAL) - Độ tin cậy: {score:.5f}")
                         sentiment = "NEUTRAL"
                     # Lưu vào CSDL
-                    add_message(user_input, sentiment , score)
+                    add_message(user_input, sentiment )
 
                 except Exception as e:
                     st.error(f"Đã xảy ra lỗi khi xử lý: {e}")
@@ -74,7 +75,7 @@ def main():
         st.info("Chưa có lịch sử phân loại nào.")
     else:
         # Dùng Pandas DataFrame để hiển thị bảng cho đẹp
-        df = pd.DataFrame(history_data, columns=[ "Văn bản đã nhập", "Cảm xúc", "Độ tin cậy", "Thời gian"])
+        df = pd.DataFrame(history_data, columns=[ "Văn bản đã nhập", "Cảm xúc","Thời gian"])
         st.dataframe(df, use_container_width=True)
 
 if __name__ == "__main__":
