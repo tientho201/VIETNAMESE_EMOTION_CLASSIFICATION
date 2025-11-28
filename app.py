@@ -3,13 +3,19 @@ import pandas as pd
 
 from nlp import load_model
 from database import init_db, add_message, get_history
+from untils import preprocess_text
 
 def main():
     """
     Hàm chính của ứng dụng
     """
     
-    st.title("Trợ Lý Phân Loại Cảm Xúc Tiếng Việt")
+    st.markdown("""
+    <h1 style='white-space: nowrap;'>
+        Trợ Lý Phân Loại Cảm Xúc Tiếng Việt
+    </h1>
+    """, unsafe_allow_html=True)
+
     st.write("Xây dựng dựa trên mô hình Transformer phân loại cảm xúc")
     
     # 1. Tải mô hình
@@ -32,13 +38,13 @@ def main():
     # 4. Xử lý khi ấn nut
     if submit_button:
         # Kiểm tra đầu vào (theo yêu cầu của đồ án)
-        if len(user_input) < 5:
+        clean_user_input = user_input.strip()
+        if len(clean_user_input) < 5:
             st.warning("Vui lòng nhập ít nhất 5 ký tự.")
-        elif len(user_input) > 256: 
-             st.warning("Vui lòng nhập dưới 256 ký tự.")
         else:
             with st.spinner("Đang phân tích..."):
                 try:
+                    user_input = preprocess_text(clean_user_input)
                     result = classifier(user_input)
                     raw_result = result[0]
                     label = raw_result["label"].upper()
@@ -61,7 +67,7 @@ def main():
                         st.info(f"Trung tính (NEUTRAL) - Độ tin cậy: {score:.5f}")
                         sentiment = "NEUTRAL"
                     # Lưu vào CSDL
-                    add_message(user_input, sentiment )
+                    add_message(clean_user_input, sentiment )
 
                 except Exception as e:
                     st.error(f"Đã xảy ra lỗi khi xử lý: {e}")
