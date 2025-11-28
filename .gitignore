@@ -61,3 +61,5 @@ Thumbs.db
 # Database
 sentiment_history.db
 
+archive.zip
+model_local/
