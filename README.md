@@ -55,6 +55,7 @@ streamlit run app.py
 ## Tác giả
 
 - **NGUYỄN TIẾN THỌ**
+- **NGUYỄN THIÊN THUẬN**
 
 ## Đóng góp
 
